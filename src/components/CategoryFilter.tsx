@@ -17,6 +17,7 @@ export const CategoryFilter: React.FC<Props> = ({ active, onToggle, onClear }) =
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.container}
+      style={styles.scroll}
     >
       <Pressable onPress={onClear} style={[styles.chip, !active && styles.chipActive]}>
         <Text style={[styles.chipText, !active && styles.chipTextActive]}>全部</Text>
@@ -44,6 +45,10 @@ export const CategoryFilter: React.FC<Props> = ({ active, onToggle, onClear }) =
 };
 
 const styles = StyleSheet.create({
+  scroll: {
+    flexGrow: 0,
+    flexShrink: 0,
+  },
   container: {
     paddingHorizontal: spacing.lg,
     gap: spacing.sm,
