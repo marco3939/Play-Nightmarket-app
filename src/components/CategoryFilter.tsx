@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
   chip: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 8,
     paddingHorizontal: spacing.md,
-    paddingVertical: 8,
+    paddingVertical: 12,
     borderRadius: radii.pill,
     backgroundColor: colors.surface,
     borderWidth: 1,
@@ -71,10 +71,10 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   chipEmoji: {
-    fontSize: 14,
+    fontSize: 18,
   },
   chipText: {
-    fontSize: 14,
+    fontSize: 17,
     fontWeight: '600',
     color: colors.text,
   },

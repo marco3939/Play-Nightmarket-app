@@ -146,41 +146,42 @@ const styles = StyleSheet.create({
     gap: spacing.md,
   },
   iconBubble: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 68,
+    height: 68,
+    borderRadius: 34,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
   },
   iconBubbleEmoji: {
-    fontSize: 28,
+    fontSize: 34,
   },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
+    flexWrap: 'wrap',
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: '700',
     color: colors.text,
     flexShrink: 1,
   },
   promoBadge: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     borderRadius: radii.pill,
     backgroundColor: colors.accent,
   },
   promoBadgeText: {
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: '700',
     color: '#7A5500',
   },
   category: {
-    marginTop: 2,
-    fontSize: 13,
+    marginTop: 4,
+    fontSize: 15,
     color: colors.textMuted,
   },
   closeBtn: {
@@ -198,23 +199,24 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   metaText: {
-    fontSize: 13,
+    fontSize: 16,
     color: colors.textMuted,
+    fontWeight: '500',
   },
   description: {
     marginTop: spacing.md,
-    fontSize: 14,
-    lineHeight: 22,
+    fontSize: 17,
+    lineHeight: 28,
     color: colors.text,
   },
   eventsBlock: {
     marginTop: spacing.lg,
   },
   sectionTitle: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: '700',
     color: colors.text,
-    marginBottom: spacing.sm,
+    marginBottom: spacing.md,
   },
   eventCard: {
     flexDirection: 'row',
@@ -225,33 +227,33 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: radii.md,
     paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm + 2,
-    marginBottom: spacing.sm,
+    paddingVertical: spacing.md,
+    marginBottom: spacing.md,
   },
   eventCover: {
-    fontSize: 28,
+    fontSize: 34,
   },
   eventTitle: {
-    fontSize: 14,
+    fontSize: 17,
     fontWeight: '700',
     color: colors.text,
   },
   eventBenefit: {
-    marginTop: 2,
-    fontSize: 12,
+    marginTop: 4,
+    fontSize: 15,
     color: colors.primary,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   claimBtn: {
     backgroundColor: colors.primary,
     paddingHorizontal: spacing.md,
-    paddingVertical: 8,
+    paddingVertical: 12,
     borderRadius: radii.pill,
   },
   claimBtnText: {
     color: '#FFFFFF',
     fontWeight: '700',
-    fontSize: 13,
+    fontSize: 16,
   },
   noEventBlock: {
     marginTop: spacing.lg,
@@ -260,8 +262,9 @@ const styles = StyleSheet.create({
     borderRadius: radii.md,
   },
   noEventText: {
-    fontSize: 13,
+    fontSize: 16,
     color: colors.textMuted,
+    lineHeight: 24,
   },
   actionsRow: {
     flexDirection: 'row',
@@ -273,8 +276,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
-    paddingVertical: 12,
+    gap: 8,
+    paddingVertical: 16,
     borderRadius: radii.pill,
   },
   actionPrimary: {
@@ -283,7 +286,7 @@ const styles = StyleSheet.create({
   actionPrimaryText: {
     color: '#FFFFFF',
     fontWeight: '700',
-    fontSize: 14,
+    fontSize: 17,
   },
   actionSecondary: {
     backgroundColor: '#FFF1E8',
@@ -293,6 +296,6 @@ const styles = StyleSheet.create({
   actionSecondaryText: {
     color: colors.primary,
     fontWeight: '700',
-    fontSize: 14,
+    fontSize: 17,
   },
 });

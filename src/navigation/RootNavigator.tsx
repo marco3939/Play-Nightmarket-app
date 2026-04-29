@@ -37,13 +37,17 @@ const Tabs = () => (
       tabBarStyle: {
         backgroundColor: colors.surface,
         borderTopColor: colors.border,
-        height: Platform.OS === 'ios' ? 86 : 64,
-        paddingTop: 6,
-        paddingBottom: Platform.OS === 'ios' ? 28 : 8,
+        height: Platform.OS === 'ios' ? 96 : 76,
+        paddingTop: 10,
+        paddingBottom: Platform.OS === 'ios' ? 30 : 12,
       },
       tabBarLabelStyle: {
-        fontSize: 11,
-        fontWeight: '600',
+        fontSize: 14,
+        fontWeight: '700',
+        marginTop: 2,
+      },
+      tabBarIconStyle: {
+        marginBottom: 2,
       },
       tabBarIcon: ({ color, size, focused }) => {
         const map: Record<keyof TabParamList, [keyof typeof Ionicons.glyphMap, keyof typeof Ionicons.glyphMap]> = {

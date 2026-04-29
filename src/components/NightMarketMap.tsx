@@ -47,7 +47,7 @@ export const NightMarketMap: React.FC<Props> = ({ selectedId, activeCategories, 
               x={street.labelX}
               y={street.labelY}
               fill="#A98548"
-              fontSize={20}
+              fontSize={26}
               fontWeight="600"
               textAnchor="middle"
             >
@@ -92,19 +92,19 @@ export const NightMarketMap: React.FC<Props> = ({ selectedId, activeCategories, 
             />
             <SvgText
               x={shop.x + shop.width / 2}
-              y={shop.y + shop.height / 2 - 6}
+              y={shop.y + shop.height / 2 - 8}
               fill="#5C3B14"
-              fontSize={26}
+              fontSize={32}
               textAnchor="middle"
             >
               {cat.emoji}
             </SvgText>
             <SvgText
               x={shop.x + shop.width / 2}
-              y={shop.y + shop.height / 2 + 24}
+              y={shop.y + shop.height / 2 + 30}
               fill="#3D250A"
-              fontSize={16}
-              fontWeight="600"
+              fontSize={20}
+              fontWeight="700"
               textAnchor="middle"
             >
               {shop.name}
@@ -112,18 +112,18 @@ export const NightMarketMap: React.FC<Props> = ({ selectedId, activeCategories, 
             {shop.isPromoting && (
               <G>
                 <Rect
-                  x={shop.x + shop.width - 50}
+                  x={shop.x + shop.width - 60}
                   y={shop.y + 6}
-                  width={44}
-                  height={20}
-                  rx={10}
+                  width={54}
+                  height={26}
+                  rx={13}
                   fill={colors.primary}
                 />
                 <SvgText
-                  x={shop.x + shop.width - 28}
-                  y={shop.y + 20}
+                  x={shop.x + shop.width - 33}
+                  y={shop.y + 24}
                   fill="#FFFFFF"
-                  fontSize={12}
+                  fontSize={15}
                   fontWeight="700"
                   textAnchor="middle"
                 >
@@ -138,16 +138,16 @@ export const NightMarketMap: React.FC<Props> = ({ selectedId, activeCategories, 
       {/* landmarks */}
       {landmarks.map((lm) => (
         <G key={lm.id}>
-          <Circle cx={lm.x} cy={lm.y} r={20} fill="#FFFFFF" stroke="#B98948" strokeWidth={2} />
-          <SvgText x={lm.x} y={lm.y + 8} fontSize={20} textAnchor="middle">
+          <Circle cx={lm.x} cy={lm.y} r={26} fill="#FFFFFF" stroke="#B98948" strokeWidth={2} />
+          <SvgText x={lm.x} y={lm.y + 11} fontSize={28} textAnchor="middle">
             {landmarkEmoji[lm.type]}
           </SvgText>
           <SvgText
             x={lm.x}
-            y={lm.y + 38}
+            y={lm.y + 50}
             fill="#7A5530"
-            fontSize={12}
-            fontWeight="600"
+            fontSize={16}
+            fontWeight="700"
             textAnchor="middle"
           >
             {lm.label}

@@ -1,3 +1,4 @@
+import { Platform, Text, TextInput } from 'react-native';
 import type { ShopCategory } from './types';
 
 export const colors = {
@@ -28,35 +29,64 @@ export const categoryColors: Record<ShopCategory, { fill: string; stroke: string
 };
 
 export const radii = {
-  sm: 6,
-  md: 12,
-  lg: 18,
-  xl: 24,
+  sm: 8,
+  md: 14,
+  lg: 22,
+  xl: 28,
   pill: 999,
 };
 
+// More breathing room — old values bumped up.
 export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 12,
-  lg: 16,
-  xl: 24,
-  xxl: 32,
+  xs: 6,
+  sm: 12,
+  md: 18,
+  lg: 24,
+  xl: 32,
+  xxl: 44,
 };
+
+// Larger, elderly-friendly type scale. Body bumped from 14 → 18, titles 16 → 22, headers 24 → 30.
+export const fontSizes = {
+  micro: 13,
+  caption: 15,
+  body: 18,
+  title: 22,
+  heading: 30,
+  display: 36,
+};
+
+export const FONT_FAMILY = 'Huninn';
 
 export const shadows = {
   card: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.10,
+    shadowRadius: 12,
+    elevation: 4,
   },
   sheet: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 16,
-    elevation: 12,
+    shadowOffset: { width: 0, height: -3 },
+    shadowOpacity: 0.18,
+    shadowRadius: 20,
+    elevation: 14,
   },
+};
+
+// Globally apply the cute rounded font to every <Text> and <TextInput>
+// without touching every existing StyleSheet. defaultProps.style is placed
+// first in the array so any explicit fontFamily (e.g. Ionicons) still wins.
+export const installGlobalFont = () => {
+  const setDefault = (Component: any) => {
+    if (!Component) return;
+    const existing = Component.defaultProps ?? {};
+    Component.defaultProps = {
+      ...existing,
+      style: [{ fontFamily: FONT_FAMILY }, existing.style],
+    };
+  };
+  setDefault(Text);
+  setDefault(TextInput);
 };
