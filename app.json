@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "玩轉逢甲",
+    "slug": "play-fengjia",
+    "scheme": "playfengjia",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#FFB347",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fengjia.play"
+    },
+    "android": {
+      "package": "com.fengjia.play",
+      "adaptiveIcon": {
+        "backgroundColor": "#FFB347"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    }
+  }
+}
