@@ -184,9 +184,9 @@ const styles = StyleSheet.create({
   },
   infoText: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 18,
     color: colors.text,
-    lineHeight: 24,
+    lineHeight: 28,
   },
   section: {
     marginTop: spacing.lg,
@@ -198,8 +198,8 @@ const styles = StyleSheet.create({
     marginBottom: spacing.md,
   },
   description: {
-    fontSize: 17,
-    lineHeight: 28,
+    fontSize: 19,
+    lineHeight: 32,
     color: colors.text,
   },
   shopList: {

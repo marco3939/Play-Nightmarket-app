@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   annTag: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    backgroundColor: '#FFE9D8',
+    backgroundColor: '#FFE0EA',
     borderRadius: radii.pill,
   },
   annTagText: {
@@ -145,10 +145,10 @@ const styles = StyleSheet.create({
     color: colors.primaryDark,
   },
   annTitle: {
-    fontSize: 17,
+    fontSize: 19,
     color: colors.text,
     fontWeight: '700',
-    lineHeight: 24,
+    lineHeight: 28,
   },
   annDate: {
     marginTop: 4,
@@ -165,14 +165,14 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     paddingVertical: spacing.lg,
-    backgroundColor: '#FFF8EE',
+    backgroundColor: '#FFF0F5',
     borderRadius: radii.md,
   },
   facilityIcon: {
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#FFE0CC',
+    backgroundColor: '#FFD8E4',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     borderRadius: radii.pill,
     borderWidth: 1.5,
     borderColor: colors.primary,
-    backgroundColor: '#FFF3EB',
+    backgroundColor: '#FFEEF4',
   },
   simulateText: {
     fontSize: 16,

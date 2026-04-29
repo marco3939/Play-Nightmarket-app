@@ -23,17 +23,17 @@ const TicketCard: React.FC<{ ticket: Ticket; onPress: () => void }> = ({ ticket,
       onPress={onPress}
       style={[styles.card, !isUnused && styles.cardDisabled]}
     >
-      <View style={[styles.stub, !isUnused && styles.stubDisabled]}>
-        <Ionicons name="ticket" size={28} color="#FFFFFF" />
+      <View style={[styles.statusPill, { backgroundColor: status.bg }]}>
+        <Text style={[styles.statusText, { color: status.color }]}>{status.label}</Text>
       </View>
-      <View style={{ flex: 1 }}>
-        <Text style={styles.title}>{ticket.title}</Text>
+      <View style={[styles.stub, !isUnused && styles.stubDisabled]}>
+        <Ionicons name="ticket" size={32} color="#FFFFFF" />
+      </View>
+      <View style={styles.cardBody}>
+        <Text style={styles.title} numberOfLines={1}>{ticket.title}</Text>
         <Text style={styles.benefit}>{ticket.benefit}</Text>
         <Text style={styles.code}>{ticket.code}</Text>
         <Text style={styles.expires}>期限：{ticket.expiresAt.slice(0, 10).replace(/-/g, '/')}</Text>
-      </View>
-      <View style={[styles.statusPill, { backgroundColor: status.bg }]}>
-        <Text style={[styles.statusText, { color: status.color }]}>{status.label}</Text>
       </View>
     </Pressable>
   );
@@ -153,7 +153,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: radii.lg,
     padding: spacing.md,
+    paddingRight: spacing.lg,
+    position: 'relative',
     ...shadows.card,
+  },
+  cardBody: {
+    flex: 1,
+    paddingRight: 70,
   },
   cardDisabled: {
     opacity: 0.65,
@@ -193,9 +199,13 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
   },
   statusPill: {
+    position: 'absolute',
+    top: spacing.md,
+    right: spacing.md,
     paddingHorizontal: spacing.md,
     paddingVertical: 6,
     borderRadius: radii.pill,
+    zIndex: 2,
   },
   statusText: {
     fontSize: 14,

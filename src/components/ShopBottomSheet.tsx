@@ -199,14 +199,14 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   metaText: {
-    fontSize: 16,
+    fontSize: 17,
     color: colors.textMuted,
     fontWeight: '500',
   },
   description: {
     marginTop: spacing.md,
-    fontSize: 17,
-    lineHeight: 28,
+    fontSize: 19,
+    lineHeight: 30,
     color: colors.text,
   },
   eventsBlock: {
@@ -222,8 +222,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.md,
-    backgroundColor: '#FFF8EE',
-    borderColor: '#F5DAA8',
+    backgroundColor: '#FFF0F5',
+    borderColor: '#F5C8D6',
     borderWidth: 1,
     borderRadius: radii.md,
     paddingHorizontal: spacing.md,
@@ -289,9 +289,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   actionSecondary: {
-    backgroundColor: '#FFF1E8',
+    backgroundColor: '#FFEEF4',
     borderWidth: 1,
-    borderColor: '#FFD8BD',
+    borderColor: '#FFCDDB',
   },
   actionSecondaryText: {
     color: colors.primary,

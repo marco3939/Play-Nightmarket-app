@@ -2,14 +2,14 @@ import { Platform, Text, TextInput } from 'react-native';
 import type { ShopCategory } from './types';
 
 export const colors = {
-  primary: '#FF6B3D',
-  primaryDark: '#E04A1A',
+  primary: '#FF7BAC',
+  primaryDark: '#E55A8E',
   accent: '#FFD93D',
-  background: '#FFF8F2',
+  background: '#FFF6F8',
   surface: '#FFFFFF',
   text: '#1F2937',
   textMuted: '#6B7280',
-  border: '#E5E7EB',
+  border: '#F2DCE3',
   success: '#10B981',
   danger: '#EF4444',
   mapBackground: '#FAEFD9',
@@ -18,6 +18,8 @@ export const colors = {
   shopDefault: '#FBE4C9',
   shopStroke: '#C8A06D',
   promoGlow: '#FFD93D',
+  pinkSoft: '#FFEFF4',
+  pinkAccent: '#FFD0DD',
 };
 
 export const categoryColors: Record<ShopCategory, { fill: string; stroke: string; label: string; emoji: string }> = {

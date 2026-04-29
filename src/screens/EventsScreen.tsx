@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     width: 78,
     height: 78,
     borderRadius: radii.md,
-    backgroundColor: '#FFF1DA',
+    backgroundColor: '#FFEEF4',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   benefitTag: {
     paddingHorizontal: 10,
     paddingVertical: 4,
-    backgroundColor: '#FFE9D8',
+    backgroundColor: '#FFE0EA',
     borderRadius: radii.pill,
   },
   benefitText: {

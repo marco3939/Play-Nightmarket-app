@@ -10,6 +10,7 @@ import { EventDetailScreen } from '../screens/EventDetailScreen';
 import { TicketsScreen } from '../screens/TicketsScreen';
 import { TicketDetailScreen } from '../screens/TicketDetailScreen';
 import { ServicesScreen } from '../screens/ServicesScreen';
+import { WelcomeScreen } from '../screens/WelcomeScreen';
 import { colors } from '../theme';
 
 export type TabParamList = {
@@ -20,6 +21,7 @@ export type TabParamList = {
 };
 
 export type RootStackParamList = {
+  Welcome: undefined;
   Tabs: NavigatorScreenParams<TabParamList>;
   EventDetail: { eventId: string };
   TicketDetail: { ticketId: string };
@@ -69,7 +71,8 @@ const Tabs = () => (
 );
 
 export const RootNavigator: React.FC = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
+  <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Welcome">
+    <Stack.Screen name="Welcome" component={WelcomeScreen} />
     <Stack.Screen name="Tabs" component={Tabs} />
     <Stack.Screen name="EventDetail" component={EventDetailScreen} />
     <Stack.Screen name="TicketDetail" component={TicketDetailScreen} />
