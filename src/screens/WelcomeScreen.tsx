@@ -3,6 +3,7 @@ import {
   Animated,
   Easing,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -53,60 +54,65 @@ export const WelcomeScreen: React.FC = () => {
     ).start();
   }, [float, pulse]);
 
-  const translateY = float.interpolate({ inputRange: [0, 1], outputRange: [0, -10] });
+  const translateY = float.interpolate({ inputRange: [0, 1], outputRange: [0, -8] });
   const scale = pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.04] });
 
   return (
     <SafeAreaView edges={['top', 'bottom']} style={styles.container}>
-      <View style={styles.heroBlock}>
-        <Animated.View style={[styles.logoCircle, { transform: [{ translateY }] }]}>
-          <Text style={styles.logoEmoji}>🏮</Text>
-        </Animated.View>
-        <Text style={styles.brand}>玩轉逢甲</Text>
-        <Text style={styles.tagline}>逢甲夜市最強導覽夥伴</Text>
-        <View style={styles.subBadge}>
-          <Ionicons name="sparkles" size={14} color={colors.primaryDark} />
-          <Text style={styles.subBadgeText}>商圈管委會官方推出</Text>
-        </View>
-      </View>
-
-      <View style={styles.featureList}>
-        {features.map((f, idx) => (
-          <View key={f.title} style={styles.featureRow}>
-            <View style={styles.featureIcon}>
-              <Ionicons name={f.icon} size={26} color={colors.primary} />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.featureTitle}>{f.title}</Text>
-              <Text style={styles.featureDesc}>{f.desc}</Text>
-            </View>
-            <Text style={styles.featureNum}>0{idx + 1}</Text>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.heroBlock}>
+          <Animated.View style={[styles.logoCircle, { transform: [{ translateY }] }]}>
+            <Text style={styles.logoEmoji}>🏮</Text>
+          </Animated.View>
+          <Text style={styles.brand}>玩轉逢甲</Text>
+          <Text style={styles.tagline}>逢甲夜市最強導覽夥伴</Text>
+          <View style={styles.subBadge}>
+            <Ionicons name="sparkles" size={14} color={colors.primaryDark} />
+            <Text style={styles.subBadgeText}>商圈管委會官方推出</Text>
           </View>
-        ))}
-      </View>
+        </View>
 
-      <View style={styles.bottomBlock}>
-        <Animated.View style={{ transform: [{ scale }] }}>
+        <View style={styles.featureList}>
+          {features.map((f, idx) => (
+            <View key={f.title} style={styles.featureRow}>
+              <View style={styles.featureIcon}>
+                <Ionicons name={f.icon} size={26} color={colors.primary} />
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.featureTitle}>{f.title}</Text>
+                <Text style={styles.featureDesc}>{f.desc}</Text>
+              </View>
+              <Text style={styles.featureNum}>0{idx + 1}</Text>
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.bottomBlock}>
+          <Animated.View style={{ transform: [{ scale }] }}>
+            <Pressable
+              style={styles.cta}
+              onPress={() => navigation.replace('Tabs', { screen: 'Map' })}
+            >
+              <Text style={styles.ctaText}>開始探索</Text>
+              <Ionicons name="arrow-forward" size={22} color="#FFFFFF" />
+            </Pressable>
+          </Animated.View>
+          <Text style={styles.disclaimer}>
+            首次使用即同意服務條款與隱私權政策
+          </Text>
           <Pressable
-            style={styles.cta}
-            onPress={() => navigation.replace('Tabs', { screen: 'Map' })}
+            style={styles.adminLink}
+            onPress={() => navigation.navigate('AdminEntry')}
+            hitSlop={8}
           >
-            <Text style={styles.ctaText}>開始探索</Text>
-            <Ionicons name="arrow-forward" size={22} color="#FFFFFF" />
+            <Ionicons name="shield-checkmark-outline" size={14} color={colors.textMuted} />
+            <Text style={styles.adminLinkText}>管委會核銷端</Text>
           </Pressable>
-        </Animated.View>
-        <Text style={styles.disclaimer}>
-          首次使用即同意服務條款與隱私權政策
-        </Text>
-        <Pressable
-          style={styles.adminLink}
-          onPress={() => navigation.navigate('AdminEntry')}
-          hitSlop={8}
-        >
-          <Ionicons name="shield-checkmark-outline" size={14} color={colors.textMuted} />
-          <Text style={styles.adminLinkText}>管委會核銷端</Text>
-        </Pressable>
-      </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -115,17 +121,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+  scrollContent: {
+    flexGrow: 1,
     paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.lg,
   },
   heroBlock: {
     alignItems: 'center',
-    paddingTop: spacing.xl,
-    paddingBottom: spacing.lg,
+    paddingTop: spacing.md,
+    paddingBottom: spacing.md,
   },
   logoCircle: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
+    width: 110,
+    height: 110,
+    borderRadius: 55,
     backgroundColor: colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
@@ -134,25 +144,25 @@ const styles = StyleSheet.create({
     ...shadows.card,
   },
   logoEmoji: {
-    fontSize: 76,
+    fontSize: 60,
   },
   brand: {
-    marginTop: spacing.lg,
-    fontSize: 38,
+    marginTop: spacing.md,
+    fontSize: 34,
     fontWeight: '900',
     color: colors.text,
     letterSpacing: 2,
   },
   tagline: {
-    marginTop: spacing.xs,
-    fontSize: 18,
+    marginTop: 4,
+    fontSize: 16,
     color: colors.textMuted,
   },
   subBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    marginTop: spacing.md,
+    marginTop: spacing.sm,
     paddingHorizontal: spacing.md,
     paddingVertical: 6,
     backgroundColor: colors.pinkSoft,
@@ -164,9 +174,9 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   featureList: {
-    flex: 1,
-    justifyContent: 'center',
-    gap: spacing.md,
+    gap: spacing.sm,
+    marginTop: spacing.sm,
+    marginBottom: spacing.lg,
   },
   featureRow: {
     flexDirection: 'row',
@@ -174,36 +184,37 @@ const styles = StyleSheet.create({
     gap: spacing.md,
     backgroundColor: colors.surface,
     borderRadius: radii.lg,
-    padding: spacing.lg,
+    padding: spacing.md,
     ...shadows.card,
   },
   featureIcon: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
     backgroundColor: colors.pinkSoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   featureTitle: {
-    fontSize: 19,
+    fontSize: 18,
     fontWeight: '800',
     color: colors.text,
   },
   featureDesc: {
-    marginTop: 4,
-    fontSize: 15,
+    marginTop: 2,
+    fontSize: 14,
     color: colors.textMuted,
-    lineHeight: 22,
+    lineHeight: 20,
   },
   featureNum: {
-    fontSize: 28,
+    fontSize: 26,
     fontWeight: '900',
     color: colors.pinkAccent,
   },
   bottomBlock: {
-    paddingBottom: spacing.lg,
     alignItems: 'center',
+    marginTop: 'auto',
+    paddingTop: spacing.sm,
   },
   cta: {
     flexDirection: 'row',
@@ -211,7 +222,7 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
     backgroundColor: colors.primary,
     paddingHorizontal: spacing.xxl,
-    paddingVertical: 20,
+    paddingVertical: 18,
     borderRadius: radii.pill,
     ...shadows.card,
   },
@@ -227,7 +238,7 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
   },
   adminLink: {
-    marginTop: spacing.md,
+    marginTop: spacing.sm,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
