@@ -9,9 +9,11 @@ yarn-debug.*
 
 # Expo
 .expo/
-dist/
 web-build/
 expo-env.d.ts
+
+# Production builds (deployed via GitHub Actions)
+dist/
 
 # Native
 *.orig.*
