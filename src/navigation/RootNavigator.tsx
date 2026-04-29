@@ -54,9 +54,11 @@ const Tabs = () => (
       tabBarStyle: {
         backgroundColor: colors.surface,
         borderTopColor: colors.border,
-        height: Platform.OS === 'ios' ? 96 : 76,
+        // mobile Safari overlays a ~50px toolbar at the bottom of the viewport,
+        // so on web we pad heavily to keep tab labels visible above it.
+        height: Platform.OS === 'ios' ? 96 : Platform.OS === 'web' ? 110 : 76,
         paddingTop: 10,
-        paddingBottom: Platform.OS === 'ios' ? 30 : 12,
+        paddingBottom: Platform.OS === 'ios' ? 30 : Platform.OS === 'web' ? 44 : 12,
       },
       tabBarLabelStyle: {
         fontSize: 14,
@@ -94,9 +96,11 @@ const AdminTabs = () => (
       tabBarStyle: {
         backgroundColor: colors.surface,
         borderTopColor: colors.border,
-        height: Platform.OS === 'ios' ? 96 : 76,
+        // mobile Safari overlays a ~50px toolbar at the bottom of the viewport,
+        // so on web we pad heavily to keep tab labels visible above it.
+        height: Platform.OS === 'ios' ? 96 : Platform.OS === 'web' ? 110 : 76,
         paddingTop: 10,
-        paddingBottom: Platform.OS === 'ios' ? 30 : 12,
+        paddingBottom: Platform.OS === 'ios' ? 30 : Platform.OS === 'web' ? 44 : 12,
       },
       tabBarLabelStyle: { fontSize: 14, fontWeight: '700', marginTop: 2 },
       tabBarIcon: ({ color, size, focused }) => {
