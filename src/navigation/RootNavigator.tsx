@@ -11,6 +11,11 @@ import { TicketsScreen } from '../screens/TicketsScreen';
 import { TicketDetailScreen } from '../screens/TicketDetailScreen';
 import { ServicesScreen } from '../screens/ServicesScreen';
 import { WelcomeScreen } from '../screens/WelcomeScreen';
+import { AdminEntryScreen } from '../screens/AdminEntryScreen';
+import { AdminScannerScreen } from '../screens/AdminScannerScreen';
+import { AdminScanResultScreen } from '../screens/AdminScanResultScreen';
+import { AdminLogsScreen } from '../screens/AdminLogsScreen';
+import { AdminStatsScreen } from '../screens/AdminStatsScreen';
 import { colors } from '../theme';
 
 export type TabParamList = {
@@ -20,14 +25,24 @@ export type TabParamList = {
   Services: undefined;
 };
 
+export type AdminTabParamList = {
+  Scanner: undefined;
+  Logs: undefined;
+  Stats: undefined;
+};
+
 export type RootStackParamList = {
   Welcome: undefined;
   Tabs: NavigatorScreenParams<TabParamList>;
   EventDetail: { eventId: string };
   TicketDetail: { ticketId: string };
+  AdminEntry: undefined;
+  AdminTabs: NavigatorScreenParams<AdminTabParamList> | undefined;
+  AdminScanResult: { payload: string };
 };
 
 const Tab = createBottomTabNavigator<TabParamList>();
+const AdminTab = createBottomTabNavigator<AdminTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Tabs = () => (
@@ -70,11 +85,45 @@ const Tabs = () => (
   </Tab.Navigator>
 );
 
+const AdminTabs = () => (
+  <AdminTab.Navigator
+    screenOptions={({ route }) => ({
+      headerShown: false,
+      tabBarActiveTintColor: colors.primary,
+      tabBarInactiveTintColor: colors.textMuted,
+      tabBarStyle: {
+        backgroundColor: colors.surface,
+        borderTopColor: colors.border,
+        height: Platform.OS === 'ios' ? 96 : 76,
+        paddingTop: 10,
+        paddingBottom: Platform.OS === 'ios' ? 30 : 12,
+      },
+      tabBarLabelStyle: { fontSize: 14, fontWeight: '700', marginTop: 2 },
+      tabBarIcon: ({ color, size, focused }) => {
+        const map: Record<keyof AdminTabParamList, [keyof typeof Ionicons.glyphMap, keyof typeof Ionicons.glyphMap]> = {
+          Scanner: ['scan-outline', 'scan'],
+          Logs: ['receipt-outline', 'receipt'],
+          Stats: ['stats-chart-outline', 'stats-chart'],
+        };
+        const [outline, filled] = map[route.name];
+        return <Ionicons name={focused ? filled : outline} size={size} color={color} />;
+      },
+    })}
+  >
+    <AdminTab.Screen name="Scanner" component={AdminScannerScreen} options={{ title: '掃碼' }} />
+    <AdminTab.Screen name="Logs" component={AdminLogsScreen} options={{ title: '紀錄' }} />
+    <AdminTab.Screen name="Stats" component={AdminStatsScreen} options={{ title: '統計' }} />
+  </AdminTab.Navigator>
+);
+
 export const RootNavigator: React.FC = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Welcome">
     <Stack.Screen name="Welcome" component={WelcomeScreen} />
     <Stack.Screen name="Tabs" component={Tabs} />
     <Stack.Screen name="EventDetail" component={EventDetailScreen} />
     <Stack.Screen name="TicketDetail" component={TicketDetailScreen} />
+    <Stack.Screen name="AdminEntry" component={AdminEntryScreen} options={{ animation: 'slide_from_bottom' }} />
+    <Stack.Screen name="AdminTabs" component={AdminTabs} />
+    <Stack.Screen name="AdminScanResult" component={AdminScanResultScreen} options={{ animation: 'slide_from_bottom' }} />
   </Stack.Navigator>
 );

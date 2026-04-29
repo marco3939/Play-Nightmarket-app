@@ -98,6 +98,14 @@ export const WelcomeScreen: React.FC = () => {
         <Text style={styles.disclaimer}>
           首次使用即同意服務條款與隱私權政策
         </Text>
+        <Pressable
+          style={styles.adminLink}
+          onPress={() => navigation.navigate('AdminEntry')}
+          hitSlop={8}
+        >
+          <Ionicons name="shield-checkmark-outline" size={14} color={colors.textMuted} />
+          <Text style={styles.adminLinkText}>管委會核銷端</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
@@ -217,5 +225,19 @@ const styles = StyleSheet.create({
     marginTop: spacing.md,
     fontSize: 12,
     color: colors.textMuted,
+  },
+  adminLink: {
+    marginTop: spacing.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 6,
+  },
+  adminLinkText: {
+    fontSize: 13,
+    color: colors.textMuted,
+    textDecorationLine: 'underline',
+    textDecorationColor: colors.textMuted,
   },
 });

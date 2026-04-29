@@ -58,3 +58,23 @@ export type Ticket = {
   status: TicketStatus;
   code: string;
 };
+
+export type RedemptionLog = {
+  id: string;
+  ticketId: string;
+  ticketCode: string;
+  eventId: string;
+  eventTitle: string;
+  benefit: string;
+  redeemedAt: string;
+  staffId: string;
+};
+
+export type AdminStats = {
+  totalClaimed: number;
+  totalRedeemed: number;
+  pending: number;
+  conversionRate: number; // 0..1
+  topEventTitle: string | null;
+  topEventCount: number;
+};
