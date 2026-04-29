@@ -83,6 +83,11 @@ export const MapScreen: React.FC = () => {
         onClear={() => setActiveCategories(null)}
       />
 
+      <View style={styles.mapHintTop}>
+        <Ionicons name="hand-left-outline" size={14} color="#7A5530" />
+        <Text style={styles.mapHintText}>點擊店家查看詳情，金色背景為限時優惠</Text>
+      </View>
+
       <View style={styles.mapWrap}>
         <NightMarketMap
           selectedId={selectedShop?.id ?? null}
@@ -107,11 +112,6 @@ export const MapScreen: React.FC = () => {
             ))}
           </View>
         )}
-
-        <View style={styles.mapHint}>
-          <Ionicons name="hand-left-outline" size={14} color="#7A5530" />
-          <Text style={styles.mapHintText}>點擊店家查看詳情，黃色為限時優惠店家</Text>
-        </View>
       </View>
 
       <ShopBottomSheet
@@ -182,20 +182,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.textMuted,
   },
-  mapHint: {
-    position: 'absolute',
-    bottom: spacing.sm,
-    left: spacing.sm,
+  mapHintTop: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
+    gap: 6,
+    marginHorizontal: spacing.lg,
+    marginTop: 0,
+    marginBottom: spacing.xs,
     paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingVertical: 8,
     borderRadius: radii.pill,
-    backgroundColor: 'rgba(255,255,255,0.92)',
+    backgroundColor: '#FFF1F4',
   },
   mapHintText: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#7A5530',
     fontWeight: '600',
   },

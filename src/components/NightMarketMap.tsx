@@ -186,7 +186,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingVertical: 0,
+    paddingTop: 4,
+    paddingBottom: 24,
   },
   svgWrap: {
     width: '100%',
