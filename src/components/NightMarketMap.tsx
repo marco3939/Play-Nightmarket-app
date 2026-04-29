@@ -74,12 +74,11 @@ export const NightMarketMap: React.FC<Props> = ({ selectedId, activeCategories, 
             const isActive = selectedId === shop.id;
             const dimmed = activeCategories && !activeCategories.includes(shop.category);
             const fill = shop.isPromoting ? 'url(#promoGlow)' : cat.fill;
-            const cx = shop.x + shop.width / 2;
-            const emojiX = shop.x + 50;
-            const emojiY = shop.y + shop.height / 2 + 14;
-            const nameX = shop.x + 110;
-            const nameY = shop.y + shop.height / 2 - 5;
-            const sigY = shop.y + shop.height / 2 + 28;
+            const emojiCenterX = shop.x + 56;
+            const emojiY = shop.y + shop.height / 2 + 16;
+            const textStartX = shop.x + 110;
+            const nameY = shop.y + shop.height / 2 - 4;
+            const sigY = shop.y + shop.height / 2 + 32;
 
             return (
               <G
@@ -108,9 +107,9 @@ export const NightMarketMap: React.FC<Props> = ({ selectedId, activeCategories, 
                   stroke={isActive ? colors.primary : cat.stroke}
                   strokeWidth={isActive ? 5 : 2.5}
                 />
-                {/* big emoji on the left side of the tile */}
+                {/* big emoji on the left side of the tile, centered around its own x */}
                 <SvgText
-                  x={emojiX}
+                  x={emojiCenterX}
                   y={emojiY}
                   fill="#5C3B14"
                   fontSize={56}
@@ -118,52 +117,40 @@ export const NightMarketMap: React.FC<Props> = ({ selectedId, activeCategories, 
                 >
                   {cat.emoji}
                 </SvgText>
-                {/* shop name on the right */}
+                {/* shop name, left-aligned to the right of the emoji */}
                 <SvgText
-                  x={nameX}
+                  x={textStartX}
                   y={nameY}
                   fill="#3D250A"
-                  fontSize={28}
-                  fontWeight="700"
-                  textAnchor="middle"
+                  fontSize={26}
+                  fontWeight="800"
+                  textAnchor="start"
                 >
                   {shop.name}
                 </SvgText>
-                {/* signature small line */}
+                {/* signature line — bolder & slightly larger so prices stay readable */}
                 {shop.signature && (
                   <SvgText
-                    x={nameX}
+                    x={textStartX}
                     y={sigY}
-                    fill="#7A5530"
-                    fontSize={20}
-                    fontWeight="500"
-                    textAnchor="middle"
+                    fill="#5C3B14"
+                    fontSize={22}
+                    fontWeight="700"
+                    textAnchor="start"
                   >
                     {shop.signature}
                   </SvgText>
                 )}
-                {/* promo badge top-right corner */}
+                {/* small promo flame in the top-right corner — non-overlapping */}
                 {shop.isPromoting && (
-                  <G>
-                    <Rect
-                      x={shop.x + shop.width - 84}
-                      y={shop.y + 10}
-                      width={74}
-                      height={32}
-                      rx={16}
-                      fill={colors.primary}
-                    />
-                    <SvgText
-                      x={shop.x + shop.width - 47}
-                      y={shop.y + 32}
-                      fill="#FFFFFF"
-                      fontSize={20}
-                      fontWeight="800"
-                      textAnchor="middle"
-                    >
-                      優惠
-                    </SvgText>
-                  </G>
+                  <SvgText
+                    x={shop.x + shop.width - 18}
+                    y={shop.y + 30}
+                    fontSize={26}
+                    textAnchor="end"
+                  >
+                    🔥
+                  </SvgText>
                 )}
               </G>
             );
