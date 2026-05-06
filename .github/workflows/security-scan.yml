@@ -1,0 +1,18 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  pull_request:
+  schedule:
+    # nightly at 02:11 UTC (offset from sibling repos)
+    - cron: "11 2 * * *"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  scan:
+    uses: marco3939/windows-rdp-2fa-multiotp/.github/workflows/security-scan-reusable.yml@main
+    # No sbom-path -> Grype SBOM job is skipped (no SBOM in this repo).
