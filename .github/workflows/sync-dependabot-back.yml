@@ -1,0 +1,45 @@
+name: Sync to Gitea SOT (on Dependabot merge)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - "claude/**"
+
+permissions:
+  contents: read
+
+jobs:
+  trigger-gitea-sync:
+    # Fire only when the push was a Dependabot merge / commit.
+    # GitHub-only direct commits trigger too if message contains the heuristics.
+    # Gitea-side commits that propagate via push-mirror also pass this filter,
+    # but the resulting Gitea push is a no-op (same SHA), so it costs only a job slot.
+    if: |
+      contains(github.event.head_commit.author.name, 'dependabot') ||
+      contains(github.event.head_commit.committer.name, 'dependabot') ||
+      contains(github.event.head_commit.message, 'dependabot[bot]') ||
+      contains(github.event.head_commit.message, 'dependabot/')
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Dispatch to Lex-git-server sync runner
+        env:
+          PAT: ${{ secrets.DISPATCH_PAT }}
+          REPO: ${{ github.event.repository.name }}
+          SHA:  ${{ github.sha }}
+          BR:   ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test -n "$PAT" || { echo "DISPATCH_PAT secret missing"; exit 1; }
+          payload=$(jq -nc --arg r "$REPO" --arg s "$SHA" --arg b "$BR" \
+            '{event_type:"sync-back",client_payload:{source_repo:$r,source_sha:$s,source_branch:$b}}')
+          echo "dispatching: $payload"
+          curl -fsSL -X POST \
+            -H "Authorization: token $PAT" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/marco3939/Lex-git-server/dispatches" \
+            -d "$payload"
+          echo "::notice title=Dispatched::source=$REPO sha=${SHA:0:7} branch=$BR"
